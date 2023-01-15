@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+        <title>Student Lifecycle Management</title>
+        {% load staticfiles %}
+        <!-- CSS  -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link href="{% static 'portal/css/materialize.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
+        <link href="{% static 'portal/css/style.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
+    </head>
+<body>
+    <nav class="light-blue lighten-1" role="navigation">
+        <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">IIITV</a>
+            <ul class="right hide-on-med-and-down">
+                <li class="profile-nav blue-grey leftnav"><a href="#">My Profile</a></li>
+                <li class="courses-nav leftnav"><a href="#">My Courses</a></li>
+                <li><a href="http://35.154.127.26:8000">Logout</a></li>
+            </ul>
+
+            <ul id="nav-mobile" class="side-nav">
+                <li class="profile-nav blue-grey leftnav"><a href="#">My Profile</a></li>
+                 <li class="courses-nav leftnav"><a href="#">My Courses</a></li>
+                <li><a href="http://35.154.127.26:8000">Logout</a></li>
+            </ul>
+            <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+        </div>
+    </nav>
+<!--Nav Bar-->
+    <div class="row">
+    <div class="col s3 offset-s1 teacherimage">
+    <!-- Page content  -->
+
+        <!-- Page content  -->
+        <div class="row">
+        <div class="col s12 m7">
+          <div class="card" style="width: 170%">
+            <div class="card-image">
+              <img src="http://iiitvadodara.ac.in/img/nkc001.jpg">
+              <span class="card-title center-align">{{ teacher.name }}</span>
+            </div>
+            <div class="card-content">
+				<span class="univ">{{ teacher.alma_mater }}<span class="country">({{ teacher.country }})</span></span>
+            </div>
+            <div class="card-action">
+              <a href="{{ teacher.linked_in }}"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+			  <a href="{{ teacher.google_scholars }}"><i class="fa fa-google" aria-hidden="true"></i></a>
+			  <a href="mailto:{{ teacher.email }}"><i class="fa fa-envelope" aria-hidden="true"></i></a>
+              <a href="tel:{{ teacher.contact_number }}"><i class="fa fa-phone" aria-hidden="true"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="col s6 teacherdetails">
+    <!--Table-->
+    <table class="highlight enroll-detail">
+    <thead>
+      <tr>
+          <th>Academic Profile</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{ teacher.qualifications }}</td>
+        <td></td>
+      </tr>
+    </tbody>
+    <thead>
+      <tr>
+          <th>Research Interests</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{ teacher.alma_mater }}</td>
+        <td></td>
+      </tr>
+    </tbody>
+    <thead>
+      <tr>
+          <th>Work Experience</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{ teacher.working_experience }}</td>
+        <td></td>
+      </tr>
+    </tbody>
+    <thead>
+      <tr>
+          <th>Publications</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{ teacher.publications }}</td>
+        <td></td>
+      </tr>
+    </tbody>
+    <thead>
+      <tr>
+          <th>Contact</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{ teacher.email }}</td>
+        <td></td>
+      </tr>
+    </tbody>
+    </table>
+    </div>
+        <div class="col s9 offset-s3">
+            <table class="highlight bordered courses-details hide">
+            <thead>
+              <tr>
+                  <th>Courses</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Course Code</td>
+                    <td>Course Name</td>
+                    <td>Links</td>
+                </tr>
+                {% for course in all_assigned_courses %}
+                    <tr>
+                        <td>{{ course.code }}</td>
+                        <td>{{ course.name }}</td>
+                        <td><a href="{% url 'course_view' course.code %}">Course details</a></td>
+
+                    </tr>
+                {% endfor %}
+            </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!--  Scripts-->
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="{% static 'portal/js/materialize.js' %}"></script>
+    <script src="{% static 'portal/js/init.js' %}"></script>
+    <script src="{% static 'portal/js/teacherdetail.js' %}"></script>
+
+</body>
+</html>
